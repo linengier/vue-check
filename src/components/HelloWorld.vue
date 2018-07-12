@@ -1,113 +1,92 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
+    <img src="../assets/logo.png">
+    <h1><a href="https://cn.vuejs.org/">Vue</a> & <a href="https://www.iviewui.com/">iView</a></h1>
+    <template v-for='(item,index) in list'>
+      <template v-if="item.children">
+        <h2>{{item.title}}</h2>
+      </template>
+      <template v-else>
+        <a href="item.link">{{item.title}}</a>
+      </template>
+      <ul v-if="item.children">
+        <li v-for='(stuff,i) in item.children'>
+          <a :href="stuff.link" target="_blank">
+          {{stuff.title}}
         </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </template>
   </div>
 </template>
-
 <script>
 export default {
   name: 'HelloWorld',
-  data () {
+  data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Vue&iView',
+      list: [{
+        title: "Vue",
+        children: [{
+          title: '文档',
+          link: 'https://vuejs.org',
+        }, {
+          title: '论坛',
+          link: 'https://forum.vuejs.org',
+        }, {
+          title: '社区',
+          link: 'https://chat.vuejs.org',
+        }, {
+          title: 'Twitter',
+          link: 'https://twitter.com/vuejs',
+        }]
+      }, {
+        title: "Vue生态",
+        children: [{
+          title: 'vue-router',
+          link: 'http://router.vuejs.org/',
+        }, {
+          title: 'vuex',
+          link: 'http://vuex.vuejs.org/',
+        }, {
+          title: 'vue-loader',
+          link: 'http://vue-loader.vuejs.org/',
+        }, {
+          title: 'awesome-vue',
+          link: 'https://github.com/vuejs/awesome-vue',
+        }]
+      }]
     }
   }
 }
-</script>
 
+</script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
+.hello{
+  padding:100px 0 200px 0;
+}
+* {
+  text-align: center;
+}
+
+h1,
+h2 {
   font-weight: normal;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;
 }
+
 a {
   color: #42b983;
 }
+
 </style>

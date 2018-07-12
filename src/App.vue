@@ -1,23 +1,67 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <div class="layout">
+      <Layout :style="{minHeight: '100vh'}">
+        <Sider >
+          <Menu :theme="theme" :mode="mode" :active-name="active" :open-names="open" :accordion="accordion" width="auto" v-on:on-select="onActive">
+            <template v-if="item.children" v-for="(item,index) in list">
+              <Submenu :name="item.title">
+                <template slot="title">
+                  <Icon :type="item.icon" />
+                  <span>{{ item.title }}</span>
+                </template>
+                <MenuItem v-for="(stuff,i) in item.children" :name="item.title+' / '+stuff.title" :title="stuff.title"> 
+                  <Icon :type="stuff.icon" />
+                  {{ stuff.title }}
+                </MenuItem>
+              </Submenu>
+            </template>
+            <template v-else>
+              <MenuItem :name="item.title" :title="item.title"> 
+                <Icon :type="item.icon" />
+                <span>{{ item.title }}</span>
+              </MenuItem>
+            </template>
+          </Menu>
+        </Sider>
+        <Layout>
+          <Content :style="{padding: '0 16px 16px'}">
+            <Breadcrumb :style="{margin: '16px 0'}">
+              <BreadcrumbItem>{{active}}</BreadcrumbItem>
+            </Breadcrumb>
+            <Card>
+              <router-view/>
+            </Card>
+          </Content>
+        </Layout>
+      </Layout>
+    </div>
   </div>
 </template>
-
 <script>
-export default {
-  name: 'App'
-}
-</script>
+  export default {
+    name: 'App',
+    computed:{
+      theme(){ return this.$store.state.nav.theme } ,
+      mode(){ return this.$store.state.nav.mode } ,
+      active(){ return this.$store.state.nav.active } ,
+      open(){ return this.$store.state.nav.open } ,
+      accordion(){ return this.$store.state.nav.accordion } ,
+      list(){ return this.$store.state.nav.list } ,
+    },
+    methods:{
+      onActive(name){
+          this.$store.commit('onActive',name)
+      }
+    }
+  }
 
+</script>
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
+
 </style>
