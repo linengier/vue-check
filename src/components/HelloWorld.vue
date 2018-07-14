@@ -2,6 +2,7 @@
   <div class="hello">
     <img src="../assets/logo.png">
     <h1><a href="https://cn.vuejs.org/">Vue</a> & <a href="https://www.iviewui.com/">iView</a></h1>
+    <h3><router-link :to='link'>{{title}}</router-link></h3>
     <template v-for='(item,index) in list'>
       <template v-if="item.children">
         <h2>{{item.title}}</h2>
@@ -25,6 +26,8 @@ export default {
   data() {
     return {
       msg: 'Vue&iView',
+      title: '前往github查看项目',
+      link: 'https://github.com/mtboom/vue-demo',
       list: [{
         title: "Vue",
         children: [{

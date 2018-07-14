@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     onActive(name) {
-      this.$store.commit('onActive', name)
+      this.$store.commit('navOnActive', name)
     }
   },
   data(){
