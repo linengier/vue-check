@@ -52,7 +52,7 @@ const nav = {
   mutations: {
     navOnActive(newState, active) {
       newState.active = active;
-    	debugLog({newState, active})
+      debugLog({ newState, active })
     }
   }
 }
@@ -135,8 +135,8 @@ const color = {
     ]
   },
   mutations: {
-    onActive(newState, color) {
-      console.log(color);
+    colorOnActive(newState, color) {
+      debugLog(color);
     }
   }
 }
@@ -189,34 +189,50 @@ const icon = {
 }
 const form = {
   state: {
-  	formItem:{
-  		name: '',
-      mail: '',
-      city: '',
-      gender: '',
+    formItem: {
+      age: 0,
+      city: "",
+      date: "",
+      desc: "",
+      gender: "",
       interest: [],
-      date: '',
-      time: '',
-      desc: ''
-  	},formRule:{
-  		input:[
-  			{required:true,message: '请输入用户名', trigger: 'blur'}
-  		],
-	  	inputNumber:[
-  			{required:true,message: '请输入年龄', trigger: 'blur'}
-  		]
-  	},formPush:{
-  		
-  	}
+      mail: "",
+      name: "",
+      time: "",
+    },
+    formPush: {
+      age: 24,
+      city: "北京",
+      date: "Thu Jul 19 2018 00: 00: 00 GMT + 0800(中国标准时间)",
+      desc: "我当初为什么要设置必须输入超过二十个字?这不是为难我自己吗",
+      gender: "male",
+      interest: ['Sleep', 'Run'],
+      mail: "mtboom@163.com",
+      name: "隔壁老王",
+      time: "02:01:08",
+    }
   },
   mutations: {
-    formSubmit(from){
-    	debugLog(from)
+    formSubmit(newState, from) {
+      debugLog(newState, from)
+    },
+    formPush(newState, from) {
+      //Todo 填入数据方式
+      debugLog(newState, from)
+      newState.formItem.age = newState.formPush.age
+      newState.formItem.city = newState.formPush.city
+      newState.formItem.date = newState.formPush.date
+      newState.formItem.desc = newState.formPush.desc
+      newState.formItem.gender = newState.formPush.gender
+      newState.formItem.interest = newState.formPush.interest
+      newState.formItem.mail = newState.formPush.mail
+      newState.formItem.name = newState.formPush.name
+      newState.formItem.time = newState.formPush.time
     }
   }
 }
-const debugLog=function (log){
-	if(store.state.debug)console.log(log);
+const debugLog = function(log) {
+  if (store.state.debug) console.log(log);
 }
 const store = new Vuex.Store({
   state: {
@@ -226,7 +242,7 @@ const store = new Vuex.Store({
     'nav': nav,
     'color': color,
     'icon': icon,
-    'form':form
+    'form': form
   }
 })
 

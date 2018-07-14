@@ -5,8 +5,8 @@
       <p>{{item.text}}</p>
       <Row type="flex" justify="space-between" style="text-align:center">
         <Col v-for='(stuff,i) in item.children' v-if='item.children.length<4' span='6' :key='i'>
-        <Card :style='{background:stuff.color}' >
-          <div>
+        <Card :style='{background:stuff.color}' @click='onActive(stuff.color)'>
+          <div  @click='onActive(stuff.color)'>
             <p class='title'>{{stuff.title}}</p>
             <p class='title'>{{stuff.text}}</p>
             <a class='title'>{{stuff.color}}</a>
@@ -15,12 +15,12 @@
         </Col>
         <Col v-else-if='item.children.length>4' span='3' :key='i'>
         <Card :style='{background:stuff.color}' >
-          <div v-if='i>3'>
+          <div v-if='i>3' @click='onActive(stuff.color)'>
             <p class='title' style="color:#666">{{stuff.title}}</p>
             <p class='title' style="color:#666">{{stuff.text}}</p>
             <a class='title' style="color:#666">{{stuff.color}}</a>
           </div>
-          <div v-else>
+          <div v-else @click='onActive(stuff.color)'>
             <p class='title'>{{stuff.title}}</p>
             <p class='title'>{{stuff.text}}</p>
             <a class='title'>{{stuff.color}}</a>
@@ -28,8 +28,8 @@
         </Card>
         </Col>
         <Col v-else span='4' :key='i'>
-        <Card :style='{background:stuff.color}' >
-          <div>
+        <Card :style='{background:stuff.color}' @click='onActive(stuff.color)'>
+          <div  @click='onActive(stuff.color)'>
             <p class='title'>{{stuff.title}}</p>
             <p class='title'>{{stuff.text}}</p>
             <a class='title'>{{stuff.color}}</a>
@@ -46,6 +46,11 @@ export default {
   data() {
     return {
       list: this.$store.state.color.list
+    }
+  },
+  methods:{
+    onActive(color){
+      this.$store.commit('colorOnActive',color)
     }
   }
 }

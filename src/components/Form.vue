@@ -54,8 +54,9 @@
           <Input v-model="formValidate.desc" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="请输入个人简介"></Input>
         </FormItem>
         <FormItem>
-          <Button type="primary" @click="handleSubmit('formValidate')">Submit</Button>
-          <Button type="ghost" @click="handleReset('formValidate')" style="margin-left: 8px">Reset</Button>
+          <Button type="primary" @click="handleSubmit('formValidate')">提交</Button>
+          <Button type="ghost" @click="handleReset('formValidate')" style="margin-left: 8px">重置</Button>
+          <Button type="ghost" @click="handlePush" style="margin-left: 8px">一键填写</Button>
         </FormItem>
       </Form>
     </Card>
@@ -85,8 +86,8 @@ export default {
           { required: true, message: '请输入名字', trigger: 'blur' }
         ],
         age: [
-          { required: true, message: '请输入年龄', trigger: 'blur' },
-          { validator: validateAge , trigger: 'blur'}
+          { required: true, message: '请输入年龄'},
+          { validator: validateAge, trigger: 'blur' }
         ],
         mail: [
           { required: true, message: '请输入邮箱', trigger: 'blur' },
@@ -116,11 +117,11 @@ export default {
     }
   },
   methods: {
-    handleSubmit(name) {
+    handleSubmit(name,form) {
       this.$refs[name].validate((valid) => {
         if (valid) {
           this.$Message.success('成功!');
-          this.$store.commit('formSubmit', name)
+          this.$store.commit('formSubmit')
         } else {
           this.$Message.error('请完整填写表单!');
         }
@@ -128,6 +129,9 @@ export default {
     },
     handleReset(name) {
       this.$refs[name].resetFields();
+    },
+    handlePush(name) {
+      this.$store.commit('formPush');
     }
   }
 }
