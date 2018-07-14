@@ -2,13 +2,13 @@
   <div class="hello">
     <img src="../assets/logo.png">
     <h1><a href="https://cn.vuejs.org/">Vue</a> & <a href="https://www.iviewui.com/">iView</a></h1>
-    <h3><a :link='link'>{{title}}</a></h3>
+    <h3><a :href='link'>{{title}}</a></h3>
     <template v-for='(item,index) in list'>
       <template v-if="item.children">
         <h2>{{item.title}}</h2>
       </template>
       <template v-else>
-        <a href="item.link">{{item.title}}</a>
+        <a :href="item.link">{{item.title}}</a>
       </template>
       <ul v-if="item.children">
         <li v-for='(stuff,i) in item.children'>
