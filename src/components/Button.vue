@@ -21,7 +21,7 @@
     </Card>
     <Card class='card'>
       <p slot="title">图标按钮及按钮形状</p>
-      <a slot="extra" @click="circle= circle? none:'circle' ">
+      <a slot="extra" @click="circle= circle? null:'circle' ">
         <Icon type="ios-loop-strong"></Icon>
         {{circle?'方形':'圆形'}}
       </a>
@@ -34,7 +34,7 @@
     </Card>
     <Card class='card'>
       <p slot="title">按钮组合及大小</p>
-      <a slot="extra" @click="circle2= circle2? none:'circle' ">
+      <a slot="extra" @click="circle2= circle2? null:'circle' ">
         <Icon type="ios-loop-strong"></Icon>
         {{circle?'方形':'圆形'}}
       </a>
@@ -80,8 +80,8 @@ export default {
   data() {
     return {
       disabled: false,
-      circle: false,
-      circle2: false,
+      circle: null,
+      circle2: null,
       size: 'default',
       loading: false
     }

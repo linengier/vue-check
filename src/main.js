@@ -51,7 +51,7 @@ const nav={
 	},
 	mutations:{
 		onActive(newState,active){
-			console.log('选中'+active);
+			console.log('选中'+newState);
 			newState.active=active;
 		}
 	}
@@ -144,7 +144,6 @@ const color={
 		}
 	}
 }
-
 const icon={
 	state:{
 		title:'Icon 图标',
@@ -194,6 +193,9 @@ const icon={
 }
 
 const store=new Vuex.Store({
+	state:{
+		debug:false
+	},
 	modules:{
 		'nav':nav,
 		'color':color,
