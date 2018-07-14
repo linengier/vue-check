@@ -12,8 +12,8 @@
       <ul v-if="item.children">
         <li v-for='(stuff,i) in item.children'>
           <a :href="stuff.link" target="_blank">
-          {{stuff.title}}
-        </a>
+            {{stuff.title}}
+          </a>
         </li>
       </ul>
     </template>
@@ -63,9 +63,10 @@ export default {
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.hello{
-  padding:100px 0 200px 0;
+.hello {
+  padding: 100px 0 200px 0;
 }
+
 * {
   text-align: center;
 }
