@@ -1,14 +1,29 @@
 <template>
   <Card style='text-align: center;'>
-      <div class='circle'>
-        <b>404</b>
+      <div class='circle' @click='changeText' >
+        <router-link to='NotFound'>
+          <b>{{page}}</b>
+        </router-link>
       </div>
-      <h1 style="color:#ff9900;padding:0 0 100px;">该页面已经飞到了宇宙</h1>
+      <h1 style="color:#ff9900;padding:0 0 100px;">{{text}}</h1>
   </Card>
 </template>
 <script type="text/javascript">
 export default {
-  name: "NotFound"
+  name: "NotFound",
+  data(){
+    return {
+      text:'该页面已被时间收束',
+      page:'404'
+    }
+  },
+  methods:{
+    changeText(state){
+      const time=new Date()
+      this.page=time.getMilliseconds();
+      this.text='你变更了时间线'
+    }
+  }
 }
 </script>
 <style type="text/css" scoped>
