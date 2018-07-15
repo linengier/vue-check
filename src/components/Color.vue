@@ -1,8 +1,8 @@
 <template>
   <div>
     <Card v-for='(item, index) in list' class='color' :key='index'>
-      <h3>{{item.title}}</h3>
-      <p>{{item.text}}</p>
+      <h3 slot="title">{{item.title}}</h3>
+      <p >{{item.text}}</p>
       <Row type="flex" justify="space-between" style="text-align:center">
         <Col v-for='(stuff,i) in item.children' v-if='item.children.length<4' span='8' :key='i'>
         <Card :style='{background:stuff.color}' @click='onActive(stuff.color)'>

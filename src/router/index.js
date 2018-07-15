@@ -8,6 +8,7 @@ import Icon from '@/components/Icon'
 import Button from '@/components/Button'
 import Form from '@/components/Form'
 import Message from '@/components/Message'
+import Slider from '@/components/Slider'
 
 Vue.use(Router)
 
@@ -43,6 +44,11 @@ export default new Router({
     path: '/Message',
     name: 'Message',
     component: Message
+  },
+  {
+    path: '/Slider',
+    name: 'Slider',
+    component: Slider
   },{
     path: '/*',
     name: 'NotFound',

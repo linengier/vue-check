@@ -2,7 +2,11 @@
   <div id="app">
     <div class="layout">
       <Layout>
-        <Sider breakpoint="md" hide-trigger collapsible :collapsed-width="0" v-model="isCollapsed" class="sider">
+        <Sider breakpoint="sm" hide-trigger collapsible :collapsed-width="0" v-model="isCollapsed" class="sider">
+          <span class="trigger" @click='isCollapsed=!isCollapsed'>
+            <Icon v-show='isCollapsed' type="ios-arrow-right"/>
+            <Icon v-show='!isCollapsed' type="ios-arrow-left"/>
+          </span>
           <Menu :theme="theme" :mode="mode" :active-name="active" :open-names="open" :accordion="accordion" width="auto" @on-select="onActive">
             <template v-if="item.children" v-for="(item,index) in list">
               <Submenu :name="item.title">
@@ -30,7 +34,6 @@
           </Menu>
         </Sider>
         <Content :style="{padding: '0 16px 16px'}" :class="menuitemClasses">
-          <span class="trigger" @click='isCollapsed=!isCollapsed'><i class="ivu-icon ivu-icon-navicon-round"></i></span>
           <Breadcrumb :style="{margin: '16px 0'}">
             <BreadcrumbItem>{{active}}</BreadcrumbItem>
           </Breadcrumb>
@@ -91,6 +94,7 @@ export default {
   position:fixed;
   height: 100vh;
   left: 0;
+  z-index: 9999;
   overflow: 'auto'
 }
 
@@ -99,15 +103,15 @@ export default {
 }
 
 .trigger {
-  display: block;
-  float:left;
+  position: absolute;
+  bottom:0;
+  right:0;
   text-align: center;
   width: 25px;
   height: 49px;
-  margin-right: 15px;
-  margin-left: -16px;
+  margin-right: -25px;
   line-height: 49px;
-  background: #495060;
+  background: #2d8cf0;
   color: #fff;
   font-size: 18px;
   border-radius: 0 6px 6px 0;

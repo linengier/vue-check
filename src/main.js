@@ -39,6 +39,9 @@ const nav = {
           title: '按钮',
           link: '/Button'
         }, {
+          title: '滑块',
+          link: '/Slider'
+        }, {
           title: '表单',
           link: '/Form'
         }, {
