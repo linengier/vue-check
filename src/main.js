@@ -6,6 +6,7 @@ import App from './App'
 import router from './router'
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
+import './theme.less';
 
 Vue.config.productionTip = false
 Vue.use(iView); // 组件配置使用文档	https://www.iviewui.com/
@@ -13,7 +14,7 @@ Vue.use(Vuex); // 路由配置使用文档	https://vuex.vuejs.org
 
 const nav = {
   state: {
-    mode: 'vertical',
+    mode: 'vertical', //horizontal
     theme: 'dark',
     active: '首页',
     accordion: false,
@@ -40,6 +41,9 @@ const nav = {
         }, {
           title: '表单',
           link: '/Form'
+        }, {
+          title: '通知',
+          link: '/Message'
         }]
       },
       {

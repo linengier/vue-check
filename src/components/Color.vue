@@ -4,7 +4,7 @@
       <h3>{{item.title}}</h3>
       <p>{{item.text}}</p>
       <Row type="flex" justify="space-between" style="text-align:center">
-        <Col v-for='(stuff,i) in item.children' v-if='item.children.length<4' span='6' :key='i'>
+        <Col v-for='(stuff,i) in item.children' v-if='item.children.length<4' span='8' :key='i'>
         <Card :style='{background:stuff.color}' @click='onActive(stuff.color)'>
           <div  @click='onActive(stuff.color)'>
             <p class='title'>{{stuff.title}}</p>
@@ -13,7 +13,7 @@
           </div>
         </Card>
         </Col>
-        <Col v-else-if='item.children.length>4' span='3' :key='i'>
+        <Col v-else-if='item.children.length>4' span='8' :key='i'>
         <Card :style='{background:stuff.color}' >
           <div v-if='i>3' @click='onActive(stuff.color)'>
             <p class='title' style="color:#666">{{stuff.title}}</p>
@@ -27,7 +27,7 @@
           </div>
         </Card>
         </Col>
-        <Col v-else span='4' :key='i'>
+        <Col v-else span='6' :key='i'>
         <Card :style='{background:stuff.color}' @click='onActive(stuff.color)'>
           <div  @click='onActive(stuff.color)'>
             <p class='title'>{{stuff.title}}</p>

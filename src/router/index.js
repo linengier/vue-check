@@ -7,11 +7,12 @@ import Color from '@/components/Color'
 import Icon from '@/components/Icon'
 import Button from '@/components/Button'
 import Form from '@/components/Form'
+import Message from '@/components/Message'
 
 Vue.use(Router)
 
 export default new Router({
-	
+	mode: 'hash',
 	routes: [
 	{
 		path: '/',
@@ -37,6 +38,11 @@ export default new Router({
     path: '/Form',
     name: 'Form',
     component: Form
+  },
+  {
+    path: '/Message',
+    name: 'Message',
+    component: Message
   },{
     path: '/*',
     name: 'NotFound',
