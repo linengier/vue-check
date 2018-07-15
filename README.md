@@ -2,7 +2,7 @@
 
 > Vue&iView搭建的一个展示项目
 
-### 前往[VueDemo](https://mtboom.github.io/vue-demo/)查看
+### [在线演示](https://mtboom.github.io/vue-demo/)
 
 ## 快速构建
 前置`nodejs`,`npm`
