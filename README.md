@@ -4,16 +4,20 @@
 
 ### 前往[VueDemo](https://mtboom.github.io/vue-demo/)查看
 
-## Build Setup
-
+## 快速构建
+前置`nodejs`,`npm`
 ``` bash
-# install dependencies
+# clone项目
+git clone https://github.com/mtboom/vue-demo.git
+
+# 安装必要插件
+
 npm install
 
-# serve with hot reload at localhost:8080
+# 本地运行   测试地址:localhost:8080
 npm run dev
 
-# build for production with minification
+# 打包构建  打包后的文件位于/docs文件夹下
 npm run build
 
 ```
