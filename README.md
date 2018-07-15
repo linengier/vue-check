@@ -11,7 +11,6 @@
 git clone https://github.com/mtboom/vue-demo.git
 
 # 安装必要插件
-
 npm install
 
 # 本地运行   测试地址:localhost:8080
