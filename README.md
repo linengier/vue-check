@@ -1,4 +1,4 @@
-# vue-demo
+# vue-tick
 
 > Vue&iView搭建的一个展示项目
 
