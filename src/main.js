@@ -256,5 +256,8 @@ new Vue({
   router,
   store,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  created(){
+    console.log(window.location.pathname)
+  }
 })
