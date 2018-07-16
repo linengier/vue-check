@@ -17,6 +17,7 @@ const nav = {
     mode: 'vertical', //horizontal
     theme: 'dark',
     active: '首页',
+    breadActive: '首页',
     accordion: false,
     open: [],
     list: [],
@@ -24,90 +25,97 @@ const nav = {
   mutations: {
     navOnActive(newState, active) {
       newState.active = active;
-      debugLog({ newState, active })
+      debugLog(newState.active)
+    },
+    navBread(newState, bread) {
+      newState.breadActive = bread;
+      debugLog(newState.breadActive)
+    },
+    navOpenSub(newState, open) {
+      newState.open = open;
+      debugLog(newState.open)
     },
     navUpdate(newState, list) {
       newState.list = list;
-      debugLog({ newState, list })
     }
   }
 }
 const color = {
   state: {
     list: [{
-      title: '主色',
-      text: 'iView 使用较为安全的蓝色作为主色调，其中 Light Primary 常用于 hover，Dark Primary 常用于 active。',
-      children: [{
-        title: 'Primary',
-        color: '#2d8cf0'
+        title: '主色',
+        text: 'iView 使用较为安全的蓝色作为主色调，其中 Light Primary 常用于 hover，Dark Primary 常用于 active。',
+        children: [{
+            title: 'Primary',
+            color: '#2d8cf0'
+          },
+          {
+            title: 'Light Primary',
+            color: '#5cadff'
+          }, {
+            title: 'Dark Primary',
+            color: '#2b85e4'
+          }
+        ]
       },
       {
-        title: 'Light Primary',
-        color: '#5cadff'
-      }, {
-        title: 'Dark Primary',
-        color: '#2b85e4'
-      }
-      ]
-    },
-    {
-      title: '辅助色',
-      text: '辅助色是具有代表性的颜色，常用于信息提示，比如成功、警告和失败。',
-      children: [{
-        title: '信息/常用',
-        text: 'Info',
-        color: '#2d8cf0'
+        title: '辅助色',
+        text: '辅助色是具有代表性的颜色，常用于信息提示，比如成功、警告和失败。',
+        children: [{
+            title: '信息/常用',
+            text: 'Info',
+            color: '#2d8cf0'
+          },
+          {
+            title: '成功/推荐',
+            text: 'Success',
+            color: '#19be6b'
+          }, {
+            title: '警告/醒目',
+            text: 'Warning',
+            color: '#ff9900'
+          }, {
+            title: '失败/错误',
+            text: 'Error',
+            color: '#ed3f14'
+          }
+        ]
       },
       {
-        title: '成功/推荐',
-        text: 'Success',
-        color: '#19be6b'
-      }, {
-        title: '警告/醒目',
-        text: 'Warning',
-        color: '#ff9900'
-      }, {
-        title: '失败/错误',
-        text: 'Error',
-        color: '#ed3f14'
+        title: '中性色',
+        text: '中性色常用于文本、背景、边框、阴影等，可以体现出页面的层次结构。',
+        children: [{
+            title: '标题',
+            text: 'Title',
+            color: '#1c2438'
+          },
+          {
+            title: '正文',
+            text: 'Content',
+            color: '#495060'
+          }, {
+            title: '辅助/图标',
+            text: 'Sub Color',
+            color: '#80848f'
+          }, {
+            title: '失效 ',
+            text: 'Disabled',
+            color: '#bbbec4'
+          }, {
+            title: '边框',
+            text: 'Border',
+            color: '#dddee1'
+          }, {
+            title: '分割线',
+            text: 'Divider',
+            color: '#e9eaec'
+          }, {
+            title: '背景',
+            text: 'Background',
+            color: '#f8f8f9'
+          }
+        ]
       }
-      ]
-    },
-    {
-      title: '中性色',
-      text: '中性色常用于文本、背景、边框、阴影等，可以体现出页面的层次结构。',
-      children: [{
-        title: '标题',
-        text: 'Title',
-        color: '#1c2438'
-      },
-      {
-        title: '正文',
-        text: 'Content',
-        color: '#495060'
-      }, {
-        title: '辅助/图标',
-        text: 'Sub Color',
-        color: '#80848f'
-      }, {
-        title: '失效 ',
-        text: 'Disabled',
-        color: '#bbbec4'
-      }, {
-        title: '边框',
-        text: 'Border',
-        color: '#dddee1'
-      }, {
-        title: '分割线',
-        text: 'Divider',
-        color: '#e9eaec'
-      }, {
-        title: '背景',
-        text: 'Background',
-        color: '#f8f8f9'
-      }
-      ]
-    }
     ]
   },
   mutations: {
@@ -123,42 +131,42 @@ const icon = {
     link: 'https://ionicons.com/',
     linkName: 'ionicons',
     list: [
-    'ionic',
-    'arrow-up-a',
-    'arrow-right-a',
-    'arrow-down-a',
-    'arrow-left-a',
-    'arrow-up-b',
-    'arrow-right-b',
-    'arrow-down-b',
-    'arrow-left-b',
-    'arrow-up-c',
-    'arrow-right-c',
-    'arrow-down-c',
-    'arrow-left-c',
-    'arrow-return-right',
-    'arrow-return-left',
-    'arrow-swap',
-    'arrow-shrink',
-    'arrow-expand',
-    'arrow-move',
-    'arrow-resize',
-    'chevron-up',
-    'chevron-right',
-    'chevron-down',
-    'chevron-left',
-    'navicon-round',
-    'navicon',
-    'drag',
-    'log-in',
-    'log-out',
-    'checkmark-round',
-    'checkmark',
-    'checkmark-circled',
-    'close-round',
-    'close',
-    'close-circled',
-    'plus-round',
+      'ionic',
+      'arrow-up-a',
+      'arrow-right-a',
+      'arrow-down-a',
+      'arrow-left-a',
+      'arrow-up-b',
+      'arrow-right-b',
+      'arrow-down-b',
+      'arrow-left-b',
+      'arrow-up-c',
+      'arrow-right-c',
+      'arrow-down-c',
+      'arrow-left-c',
+      'arrow-return-right',
+      'arrow-return-left',
+      'arrow-swap',
+      'arrow-shrink',
+      'arrow-expand',
+      'arrow-move',
+      'arrow-resize',
+      'chevron-up',
+      'chevron-right',
+      'chevron-down',
+      'chevron-left',
+      'navicon-round',
+      'navicon',
+      'drag',
+      'log-in',
+      'log-out',
+      'checkmark-round',
+      'checkmark',
+      'checkmark-circled',
+      'close-round',
+      'close',
+      'close-circled',
+      'plus-round',
     ],
 
   }
@@ -194,7 +202,6 @@ const form = {
     },
     formPush(newState, from) {
       //Todo 填入数据方式
-      debugLog(newState, from)
       newState.formItem.age = newState.formPush.age
       newState.formItem.city = newState.formPush.city
       newState.formItem.date = newState.formPush.date
@@ -212,7 +219,7 @@ const debugLog = function(log) {
 }
 const store = new Vuex.Store({
   state: {
-    debug: true
+    debug: false
   },
   modules: {
     'nav': nav,
@@ -221,7 +228,6 @@ const store = new Vuex.Store({
     'form': form
   }
 })
-
 // /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -229,54 +235,58 @@ new Vue({
   store,
   components: { App },
   template: '<App/>',
-  watch: {
-    '$route' (to, from) {
-      debugLog({to,from})
-      // 对路由变化作出响应...
-    }
-  },
-  beforeCreate(){
+  beforeCreate() {
+    //直接进入页面时触发
     debugLog('beforeCreate')
+    var path = '';
+    this.$route.matched.map((item, index) => {
+      if (this.$route.matched.length == index + 1) {
+        this.$store.commit('navOnActive', item.path || '/');
+      }
+      if (index == 0) {
+        path += item.name
+        this.$store.commit('navOpenSub',[item.path])
+      } else {
+        path += '-' + item.name
+      }
+    })
+    this.$store.commit('navBread', path);
   },
   created() {
-    debugLog(router.options.routes)
-    this.$store.commit('navUpdate',router.options.routes)
+    this.$store.commit('navUpdate', router.options.routes)
     // var active = () => {
     //   var p = window.location.parse(testUrl);
     //   // for (var value of this.$store.state.nav.list) {
     //   //   if (value.link==true){}
     //   // }
     // }
-    debugLog(this.$router)
-
-    debugLog(this.$store.state.nav.list)
   },
-  beforeMount(){
+  beforeMount() {
     debugLog('beforeMount')
   },
-  mounted(){
+  mounted() {
     debugLog('mounted')
   },
-  beforeUpdate(){
+  beforeUpdate() {
     debugLog('beforeUpdate')
   },
-  updated(){
+  updated() {
     debugLog('update')
   },
-  activated(){
+  activated() {
     debugLog('activated')
   },
-  deactivated(){
+  deactivated() {
     debugLog('deactivated')
   },
-  beforeDestroy(){
+  beforeDestroy() {
     debugLog('beforeDestroy')
   },
-  destroyed(){
+  destroyed() {
     debugLog('destroy')
   },
-  errorCaptured(){
+  errorCaptured() {
     debugLog('errorCaptured')
   }
-  
+
 })

@@ -7,16 +7,16 @@
             <Icon v-show='isCollapsed' type="ios-arrow-right"/>
             <Icon v-show='!isCollapsed' type="ios-arrow-left"/>
           </span>
-          <Menu :theme="theme" :mode="mode" :active-name="active" :open-names="open" :accordion="accordion" width="auto" @on-select="onActive">
+          <Menu ref='side_menu' :theme="theme" :mode="mode" :active-name="active" :open-names="open" :accordion="accordion" width="auto" >
             <template v-if="item.children" v-for="(item,index) in list">
-              <Submenu :name="item.name">
+              <Submenu :name="item.path">
                 <template slot="title">
                   <Icon :type="item.icon" />
                   <span>{{ item.name }}</span>
                 </template>
                 <template v-for="(stuff,i) in item.children">
-                  <router-link :to='item.path+"/"+stuff.path'>
-                    <MenuItem :name="item.name+' / '+stuff.name" :title="stuff.name">
+                  <router-link :to="item.path+'/'+stuff.path">
+                    <MenuItem :name="item.path+'/'+stuff.path" :title="stuff.name">
                     <Icon :type="stuff.icon" /> {{ stuff.name }}
                     </MenuItem>
                   </router-link>
@@ -25,7 +25,7 @@
             </template>
             <template v-else>
               <router-link :to='item.path'>
-                <MenuItem :name="item.name" :title="item.name" :link="item.path">
+                <MenuItem :name="item.path" :title="item.name" :link="item.path">
                 <Icon :type="item.icon" />
                 <span>{{ item.name }}</span>
                 </MenuItem>
@@ -35,7 +35,7 @@
         </Sider>
         <Content :style="{padding: '0 16px 16px'}" :class="menuitemClasses">
           <Breadcrumb :style="{margin: '16px 0'}">
-            <BreadcrumbItem>{{active}}</BreadcrumbItem>
+            <BreadcrumbItem>{{breadActive}}</BreadcrumbItem>
           </Breadcrumb>
           <Card>
             <router-view/>
@@ -49,25 +49,41 @@
 export default {
   name: 'App',
   computed: {
-    theme() { return this.$store.state.nav.theme },
-    mode() { return this.$store.state.nav.mode },
-    active() { return this.$store.state.nav.active },
-    open() { return this.$store.state.nav.open },
-    accordion() { return this.$store.state.nav.accordion },
-    list() { return this.$store.state.nav.list },
     menuitemClasses() {
       return [
         this.isCollapsed ? '' : 'collapsed-menu'
       ]
     }
   },
-  methods: {
-    onActive(name) {
-      this.$store.commit('navOnActive', name)
+  watch: {
+    // 对路由变化作出响应...
+    '$route' (to, from) {
+      var path = '';
+      to.matched.map((item, index) => {
+        if (to.matched.length == index + 1) {
+          this.$store.commit('navOnActive', item.path || '/');
+        }
+        if (index == 0) {
+          path += item.name
+        } else {
+          path += '-' + item.name
+        }
+      })
+      this.$store.commit('navBread', path);
+      this.open=this.$store.state.nav.open
+      this.active=this.$store.state.nav.active
+      this.breadActive=this.$store.state.nav.breadActive
     }
   },
   data() {
     return {
+      theme: this.$store.state.nav.theme,
+      mode: this.$store.state.nav.mode,
+      active: this.$store.state.nav.active,
+      breadActive:this.$store.state.nav.breadActive,
+      open: this.$store.state.nav.open,
+      accordion: this.$store.state.nav.accordion,
+      list: this.$store.state.nav.list,
       isCollapsed: false,
     }
   }
