@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import NotFound from '@/components/NotFound'
+import Routes from '@/components/Routes'
 
 import HelloWorld from '@/components/HelloWorld'
 import Color from '@/components/Color'
@@ -13,46 +14,60 @@ import Stuff from '@/components/Stuff'
 Vue.use(Router)
 
 export default new Router({
-	mode: 'history', //hash
+	mode: 'hash', //history
 	routes: [
 	{
 		path: '/',
-		name: 'HelloWorld',
-		component: HelloWorld
+		name: '首页',
+		component: HelloWorld,
+    icon: 'ionic'
 	},
 	{
 		path: '/Color',
-		name: 'Color',
-		component: Color
+		name: '色彩',
+		component: Color,
+    icon: 'ios-analytics'
 	},
   {
-    path: '/Icon',
-    name: 'Icon',
-    component: Icon
-  },
-  {
-    path: '/Button',
-    name: 'Button',
-    component: Button
-  },
-  {
-    path: '/Form',
-    name: 'Form',
-    component: Form
-  },
-  {
-    path: '/Message',
-    name: 'Message',
-    component: Message
-  },
-  {
-    path: '/Stuff',
-    name: 'Stuff',
-    component: Stuff
+    path: '/iView',
+    name: 'iView组件',
+    icon: 'ios-keypad',
+    component:Routes,
+    children:[{
+      path: 'Icon',
+      name: '图标',
+      component: Icon,
+      icon: 'android-favorite'
+    },
+    {
+      path: 'Button',
+      name: '按钮',
+      component: Button,
+      icon: 'android-radio-button-on'
+    },
+    {
+      path: 'Form',
+      name: '表单',
+      component: Form,
+      icon: 'ios-list'
+    },
+    {
+      path: 'Message',
+      name: '消息',
+      component: Message,
+      icon: 'chatbox'
+    },
+    {
+      path: 'Stuff',
+      name: '其他',
+      component: Stuff,
+      icon: 'android-apps'
+    }]
   },{
     path: '/*',
-    name: 'NotFound',
-    component: NotFound
+    name: '404',
+    component: NotFound,
+    icon: 'alert'
   }
-	]
+  ]
 })

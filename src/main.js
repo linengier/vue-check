@@ -19,44 +19,16 @@ const nav = {
     active: '首页',
     accordion: false,
     open: [],
-    list: [{
-      title: '首页',
-      link: '/',
-      icon: 'ionic',
-    }, {
-      title: '色彩',
-      link: '/Color',
-      icon: 'ios-analytics'
-    }, {
-      title: '图标',
-      link: '/Icon',
-      icon: 'android-favorite'
-    }, {
-      title: '按钮',
-      link: '/Button',
-      icon: 'android-radio-button-on'
-    }, {
-      title: '表单',
-      link: '/Form',
-      icon: 'ios-list'
-    }, {
-      title: '通知',
-      link: '/Message',
-      icon: 'chatbox'
-    }, {
-      title: '其他',
-      link: '/Stuff',
-      icon: 'android-apps'
-    },{
-      title: '404',
-      link: '/404',
-      icon: 'alert'
-    }],
+    list: [],
   },
   mutations: {
     navOnActive(newState, active) {
       newState.active = active;
       debugLog({ newState, active })
+    },
+    navUpdate(newState, list) {
+      newState.list = list;
+      debugLog({ newState, list })
     }
   }
 }
@@ -257,7 +229,54 @@ new Vue({
   store,
   components: { App },
   template: '<App/>',
-  created(){
-    console.log(window.location.pathname)
+  watch: {
+    '$route' (to, from) {
+      debugLog({to,from})
+      // 对路由变化作出响应...
+    }
+  },
+  beforeCreate(){
+    debugLog('beforeCreate')
+  },
+  created() {
+    debugLog(router.options.routes)
+    this.$store.commit('navUpdate',router.options.routes)
+    // var active = () => {
+    //   var p = window.location.parse(testUrl);
+    //   // for (var value of this.$store.state.nav.list) {
+    //   //   if (value.link==true){}
+    //   // }
+    // }
+    debugLog(this.$router)
+
+    debugLog(this.$store.state.nav.list)
+  },
+  beforeMount(){
+    debugLog('beforeMount')
+  },
+  mounted(){
+    debugLog('mounted')
+  },
+  beforeUpdate(){
+    debugLog('beforeUpdate')
+  },
+  updated(){
+    debugLog('update')
+  },
+  activated(){
+    debugLog('activated')
+  },
+  deactivated(){
+    debugLog('deactivated')
+  },
+  beforeDestroy(){
+    debugLog('beforeDestroy')
+  },
+  destroyed(){
+    debugLog('destroy')
+  },
+  errorCaptured(){
+    debugLog('errorCaptured')
   }
+  
 })

@@ -9,25 +9,25 @@
           </span>
           <Menu :theme="theme" :mode="mode" :active-name="active" :open-names="open" :accordion="accordion" width="auto" @on-select="onActive">
             <template v-if="item.children" v-for="(item,index) in list">
-              <Submenu :name="item.title">
+              <Submenu :name="item.name">
                 <template slot="title">
                   <Icon :type="item.icon" />
-                  <span>{{ item.title }}</span>
+                  <span>{{ item.name }}</span>
                 </template>
                 <template v-for="(stuff,i) in item.children">
-                  <router-link :to='stuff.link'>
-                    <MenuItem :name="item.title+' / '+stuff.title" :title="stuff.title">
-                    <Icon :type="stuff.icon" /> {{ stuff.title }}
+                  <router-link :to='item.path+"/"+stuff.path'>
+                    <MenuItem :name="item.name+' / '+stuff.name" :title="stuff.name">
+                    <Icon :type="stuff.icon" /> {{ stuff.name }}
                     </MenuItem>
                   </router-link>
                 </template>
               </Submenu>
             </template>
             <template v-else>
-              <router-link :to='item.link'>
-                <MenuItem :name="item.title" :title="item.title" :link="item.link">
+              <router-link :to='item.path'>
+                <MenuItem :name="item.name" :title="item.name" :link="item.path">
                 <Icon :type="item.icon" />
-                <span>{{ item.title }}</span>
+                <span>{{ item.name }}</span>
                 </MenuItem>
               </router-link>
             </template>
