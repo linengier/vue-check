@@ -28,7 +28,7 @@ export default {
     return {
       msg: 'Vue&iView',
       title: '前往github查看项目',
-      link: 'https://github.com/mtboom/vue-demo',
+      link: 'https://github.com/mtboom/vue-tick',
       list: [{
         title: "Vue",
         children: [{
