@@ -22,18 +22,18 @@ export default new Router({
 		component: HelloWorld,
     icon: 'ionic'
 	},
-	{
-		path: '/Color',
-		name: '色彩',
-		component: Color,
-    icon: 'ios-analytics'
-	},
   {
     path: '/iView',
-    name: 'iView组件',
+    name: 'iView',
     icon: 'ios-keypad',
     component:Routes,
-    children:[{
+    children:[
+    {
+      path: 'Color',
+      name: '色彩',
+      component: Color,
+      icon: 'ios-analytics'
+    },{
       path: 'Icon',
       name: '图标',
       component: Icon,
