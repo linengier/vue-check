@@ -1,40 +1,33 @@
 <template>
   <div>
-    <div style="margin:10px">
-      <h2>通知</h2>
-    </div>
     <Card class='card'>
       <h3 slot="title">全局通知</h3>
-      <Button type="primary" @click="Minfo">显示普通提示</Button>
-      <Button type="success" @click="Msuccess">显示成功提示</Button>
-      <Button type="warning" @click="Mwarning">显示警告提示</Button>
-      <Button type="error" @click="Merror">显示错误提示</Button>
-      <Button @click="Mloading">显示加载提示</Button>
-      <Button @click="Mtime">显示一个10秒的提示</Button>
-      <Button @click="Mclosable">可以手动关闭的提示</Button>
+      <Button class='card' type="primary" @click="Minfo">显示普通提示</Button>
+      <Button class='card' type="success" @click="Msuccess">显示成功提示</Button>
+      <Button class='card' type="warning" @click="Mwarning">显示警告提示</Button>
+      <Button class='card' type="error" @click="Merror">显示错误提示</Button>
+      <Button class='card' @click="Mloading">显示加载提示</Button>
+      <Button class='card' @click="Mtime">显示一个10秒的提示</Button>
+      <Button class='card' @click="Mclosable">可以手动关闭的提示</Button>
     </Card>
     <Card class='card'>
       <h3 slot="title">通知提醒</h3>
-      <p style="margin:10px">标题+文本</p>
-      <Button type="primary" @click="Ninfo(false)">消息</Button>
-      <Button type="success" @click="Nsuccess(false)">成功</Button>
-      <Button type="warning" @click="Nwarning(false)">警告</Button>
-      <Button type="error" @click="Nerror(false)">错误</Button>
-      <p style="margin:10px">仅标题</p>
-      <Button type="primary" @click="Ninfo()">消息</Button>
-      <Button type="success" @click="Nsuccess(true)">成功</Button>
-      <Button type="warning" @click="Nwarning(true)">警告</Button>
-      <Button type="error" @click="Nerror(true)">错误</Button>
-      <p style="margin:10px">仅标题</p>
-      <Button @click="Ninfo2()">这条消息需要手动关闭</Button>
+      <Button class='card' type="primary" @click="Ninfo(false)">消息</Button>
+      <Button class='card' type="success" @click="Nsuccess(false)">成功</Button>
+      <Button class='card' type="warning" @click="Nwarning(false)">警告</Button>
+      <Button class='card' type="error" @click="Nerror(false)">错误</Button>
+      <Button class='card' type="primary" @click="Ninfo()">仅标题-消息</Button>
+      <Button class='card' type="success" @click="Nsuccess(true)">仅标题-成功</Button>
+      <Button class='card' type="warning" @click="Nwarning(true)">仅标题-警告</Button>
+      <Button class='card' type="error" @click="Nerror(true)">仅标题-错误</Button>
+      <Button class='card' @click="Ninfo2()">仅标题-这条消息需要手动关闭</Button>
     </Card>
     <Card class='card'>
       <h3 slot="title">对话框</h3>
-      <p style="margin:10px">基本的对话框</p>
-      <Button type="primary" @click="Moinstance('info')">消息</Button>
-      <Button type="success" @click="Moinstance('success')">成功</Button>
-      <Button type="warning" @click="Moinstance('warning')">警告</Button>
-      <Button type="error" @click="Moinstance('error')">错误</Button>
+      <Button class='card' type="primary" @click="Moinstance('info')">消息</Button>
+      <Button class='card' type="success" @click="Moinstance('success')">成功</Button>
+      <Button class='card' type="warning" @click="Moinstance('warning')">警告</Button>
+      <Button class='card' type="error" @click="Moinstance('error')">错误</Button>
     </Card>
   </div>
 </template>
@@ -144,7 +137,7 @@
 </script>
 <style scoped>
 .card {
-  margin: 10px 0 10px 0;
+  margin: 5px 0;
 }
 
 </style>

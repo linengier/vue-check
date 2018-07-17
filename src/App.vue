@@ -34,12 +34,10 @@
           </Menu>
         </Sider>
         <Content :style="{padding: '0 16px 16px'}" :class="menuitemClasses">
-          <Breadcrumb :style="{margin: '16px 0'}">
+          <Breadcrumb :style="{margin: '16px 0'}" >
             <BreadcrumbItem>{{breadActive}}</BreadcrumbItem>
           </Breadcrumb>
-          <Card>
-            <router-view/>
-          </Card>
+          <router-view/>
         </Content>
       </Layout>
     </div>

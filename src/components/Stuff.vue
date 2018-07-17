@@ -1,5 +1,5 @@
 <template>
-  <Row>
+  <Row  :gutter="16">
     <Col span='12'>
     <Card class='color'>
       <h3 slot="title">标签</h3>
@@ -147,8 +147,7 @@
 </script>
 <style type="text/css" scoped>
 .color {
-  padding: 8px;
-  margin: 18px;
+  margin: 18px 0;
 }
 
 .demo-carousel {

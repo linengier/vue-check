@@ -117,11 +117,6 @@ const color = {
         ]
       }
     ]
-  },
-  mutations: {
-    colorOnActive(newState, color) {
-      debugLog(color);
-    }
   }
 }
 const icon = {

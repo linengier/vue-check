@@ -1,10 +1,7 @@
 <template>
   <div>
-    <div style="margin:10px">
-      <h3>按钮</h3>
-    </div>
     <Card class='card'>
-      <p slot="title">按钮类型有：默认按钮、主按钮、幽灵按钮、虚线按钮、文字按钮以及四种颜色按钮。</p>
+      <p slot="title">按钮类型</p>
       <a slot="extra" @click="disabled=!disabled">
         <Icon type="ios-loop-strong"></Icon>
         {{disabled?'启用':'禁用'}}

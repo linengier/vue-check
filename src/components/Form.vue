@@ -1,9 +1,6 @@
 <template>
-  <div>
-    <div style="margin:10px">
-      <h3>表单输入</h3>
-    </div>
-    <Card>
+  <Card>
+      <h3 slot='title'>表单输入</h3>
       <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
         <FormItem label="名字" prop="name">
           <Input v-model="formValidate.name" placeholder="请输入你的名字"></Input>
@@ -59,8 +56,7 @@
           <Button type="ghost" @click="handlePush" style="margin-left: 8px">一键填写</Button>
         </FormItem>
       </Form>
-    </Card>
-  </div>
+  </Card>
 </template>
 <script type="text/javascript">
 export default {
