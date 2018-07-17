@@ -1,5 +1,5 @@
 <template>
-  <v-touch tag="div" id="app" v-on:swipeleft="onSwipeLeft"  v-on:swiperight="onSwipeRight">
+  <div id="app" >
     <div class="layout">
       <Layout>
         <Sider hide-trigger collapsible :collapsed-width="0"  :class="siderClasses">
@@ -30,16 +30,16 @@
           </Menu>
         </Sider>
         <Content :style="{padding: '0 16px 16px',height: '100vh'}" :class='contentClasses'>
-         <v-touch  v-on:swipeleft="onSwipeLeft"  v-on:swiperight="onSwipeRight">
           <Breadcrumb :style="{margin: '16px 0'}" >
             <BreadcrumbItem>{{breadActive}}</BreadcrumbItem>
           </Breadcrumb>
+         <v-touch  v-on:swipeleft="onSwipeLeft"  v-on:swiperight="onSwipeRight" style='touch-action: pan-y'>
           <router-view/>
         </v-touch>
       </Content>
     </Layout>
   </div>
-</v-touch>
+</div>
 </template>
 <script>
   export default {
