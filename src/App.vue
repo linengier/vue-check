@@ -1,9 +1,9 @@
 <template>
-  <div id="app" >
+  <div id="app">
     <div class="layout">
       <Layout>
-        <Sider hide-trigger collapsible :collapsed-width="0"  :class="siderClasses">
-          <Menu ref='side_menu' :theme="theme" :mode="mode" :active-name="active" :open-names="open" :accordion="accordion" width="auto" >
+        <Sider hide-trigger collapsible :collapsed-width="0" :class="siderClasses">
+          <Menu ref='side_menu' :theme="theme" :mode="mode" :active-name="active" :open-names="open" :accordion="accordion" width="auto">
             <template v-if="item.children" v-for="(item,index) in list">
               <Submenu :name="item.path">
                 <template slot="title">
@@ -13,7 +13,7 @@
                 <template v-for="(stuff,i) in item.children">
                   <router-link :to="item.path+'/'+stuff.path">
                     <MenuItem :name="item.path+'/'+stuff.path" :title="stuff.name">
-                      <Icon :type="stuff.icon" /> {{ stuff.name }}
+                    <Icon :type="stuff.icon" /> {{ stuff.name }}
                     </MenuItem>
                   </router-link>
                 </template>
@@ -22,54 +22,56 @@
             <template v-else>
               <router-link :to='item.path'>
                 <MenuItem :name="item.path" :title="item.name" :link="item.path">
-                  <Icon :type="item.icon" />
-                  <span>{{ item.name }}</span>
+                <Icon :type="item.icon" />
+                <span>{{ item.name }}</span>
                 </MenuItem>
               </router-link>
             </template>
           </Menu>
         </Sider>
-        <Content :style="{padding: '0 16px 16px',height: '100vh'}" :class='contentClasses'>
-          <Breadcrumb :style="{margin: '16px 0'}" >
+        <Content :style="{padding: '0 16px 16px'}" :class='contentClasses'>
+          <Breadcrumb :style="{margin: '16px 0'}">
             <BreadcrumbItem>{{breadActive}}</BreadcrumbItem>
           </Breadcrumb>
-         <v-touch  v-on:swipeleft="onSwipeLeft"  v-on:swiperight="onSwipeRight" style='touch-action: pan-y'>
-          <router-view/>
-        </v-touch>
-      </Content>
-    </Layout>
+          <v-touch tag="div" ref='touchTag' v-on:swipeleft="onSwipeLeft" v-on:swiperight="onSwipeRight" :style="{'touch-action':'pan-y'}">
+            <router-view/>
+          </v-touch>
+        </Content>
+      </Layout>
+    </div>
   </div>
-</div>
 </template>
 <script>
-  export default {
-    name: 'App',
-    computed: {
-      siderClasses() {
-        return [
-        this.silderShow ? 'sider' : 'display_none'
-        ]
-      },contentClasses() {
-        return [
-        this.silderShow&&!this.isMobile ? 'margin_left' : ''
-        ]
-      }
+export default {
+  name: 'App',
+  computed: {
+    siderClasses() {
+      return [
+        this.silderShow ? 'sider' : 'display_none sider'
+      ]
     },
-    mounted(){
-      window.onresize = () =>{
-        this.$store.commit('changeView',document.documentElement.clientWidth<768)
-        this.isMobile=this.$store.state.nav.isMobile
-      }
+    contentClasses() {
+      return [
+        this.silderShow && !this.isMobile ? 'margin_left' : ''
+      ]
+    }
+  },
+  mounted() {
+    this.$refs.touchTag.$el.style['touch-action'] = 'pan-y'
+    window.onresize = () => {
+      this.$store.commit('changeView', document.documentElement.clientWidth < 768)
+      this.isMobile = this.$store.state.nav.isMobile
+    }
+  },
+  methods: {
+    onSwipeLeft() {
+      this.silderShow = false
     },
-    methods:{
-      onSwipeLeft(){
-        this.silderShow=false
-      },
-      onSwipeRight(){
-        this.silderShow=true
-      }
-    },
-    watch: {
+    onSwipeRight() {
+      this.silderShow = true
+    }
+  },
+  watch: {
     // 对路由变化作出响应...
     '$route' (to, from) {
       var path = '';
@@ -84,9 +86,9 @@
         }
       })
       this.$store.commit('navBread', path);
-      this.open=this.$store.state.nav.open;
-      this.active=this.$store.state.nav.active;
-      this.breadActive=this.$store.state.nav.breadActive;
+      this.open = this.$store.state.nav.open;
+      this.active = this.$store.state.nav.active;
+      this.breadActive = this.$store.state.nav.breadActive;
     }
   },
   data() {
@@ -94,12 +96,12 @@
       theme: this.$store.state.nav.theme,
       mode: this.$store.state.nav.mode,
       active: this.$store.state.nav.active,
-      breadActive:this.$store.state.nav.breadActive,
+      breadActive: this.$store.state.nav.breadActive,
       open: this.$store.state.nav.open,
       accordion: this.$store.state.nav.accordion,
       list: this.$store.state.nav.list,
-      silderStyle:'',
-      ContentStyle:'',
+      silderStyle: '',
+      ContentStyle: '',
       silderShow: this.$store.state.nav.silderShow,
       isMobile: this.$store.state.nav.isMobile,
     }
@@ -116,27 +118,31 @@
 
 </style>
 <style type="text/css" scoped>
-.display_none{
+.display_none {
   margin-left: -201px
 }
-.margin_left{
-  margin-left:200px;
+
+.margin_left {
+  margin-left: 200px;
 }
+
 .layout {
   background: #f5f7f9;
   position: relative;
   border-radius: 4px;
 }
+
 .sider {
-  position:fixed;
+  position: fixed;
   height: 100vh;
   left: 0;
   z-index: 9999;
 }
+
 .trigger {
   position: absolute;
-  bottom:0;
-  right:0;
+  bottom: 0;
+  right: 0;
   text-align: center;
   width: 25px;
   height: 49px;
