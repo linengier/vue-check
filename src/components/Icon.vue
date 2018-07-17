@@ -3,7 +3,7 @@
     <h3 slot='title'>{{title}}</h3>
     <p>{{text}} - <a :href="link"> {{linkName}}</a></p>
     <Row type="flex" justify="space-between" style="text-align:center">
-      <Col v-for='(item,index) in list' span='8' :key='index'>
+      <Col v-for='(item,index) in list' :sm='8' :xs="12" :key='index'>
       <Card style='margin:10px'>
         <Icon :type="item" size="40" />
         <h3>{{item}}</h3>

@@ -1,12 +1,8 @@
 <template>
-  <div id="app">
+  <v-touch tag="div" id="app" v-on:swipeleft="onSwipeLeft"  v-on:swiperight="onSwipeRight">
     <div class="layout">
       <Layout>
-        <Sider breakpoint="sm" hide-trigger collapsible :collapsed-width="0" v-model="isCollapsed" class="sider">
-          <span class="trigger" @click='isCollapsed=!isCollapsed'>
-            <Icon v-show='isCollapsed' type="ios-arrow-right"/>
-            <Icon v-show='!isCollapsed' type="ios-arrow-left"/>
-          </span>
+        <Sider hide-trigger collapsible :collapsed-width="0"  :class="siderClasses">
           <Menu ref='side_menu' :theme="theme" :mode="mode" :active-name="active" :open-names="open" :accordion="accordion" width="auto" >
             <template v-if="item.children" v-for="(item,index) in list">
               <Submenu :name="item.path">
@@ -17,7 +13,7 @@
                 <template v-for="(stuff,i) in item.children">
                   <router-link :to="item.path+'/'+stuff.path">
                     <MenuItem :name="item.path+'/'+stuff.path" :title="stuff.name">
-                    <Icon :type="stuff.icon" /> {{ stuff.name }}
+                      <Icon :type="stuff.icon" /> {{ stuff.name }}
                     </MenuItem>
                   </router-link>
                 </template>
@@ -26,34 +22,54 @@
             <template v-else>
               <router-link :to='item.path'>
                 <MenuItem :name="item.path" :title="item.name" :link="item.path">
-                <Icon :type="item.icon" />
-                <span>{{ item.name }}</span>
+                  <Icon :type="item.icon" />
+                  <span>{{ item.name }}</span>
                 </MenuItem>
               </router-link>
             </template>
           </Menu>
         </Sider>
-        <Content :style="{padding: '0 16px 16px'}" :class="menuitemClasses">
+        <Content :style="{padding: '0 16px 16px',height: '100vh'}" :class='contentClasses'>
+         <v-touch  v-on:swipeleft="onSwipeLeft"  v-on:swiperight="onSwipeRight">
           <Breadcrumb :style="{margin: '16px 0'}" >
             <BreadcrumbItem>{{breadActive}}</BreadcrumbItem>
           </Breadcrumb>
           <router-view/>
-        </Content>
-      </Layout>
-    </div>
+        </v-touch>
+      </Content>
+    </Layout>
   </div>
+</v-touch>
 </template>
 <script>
-export default {
-  name: 'App',
-  computed: {
-    menuitemClasses() {
-      return [
-        this.isCollapsed ? '' : 'collapsed-menu'
-      ]
-    }
-  },
-  watch: {
+  export default {
+    name: 'App',
+    computed: {
+      siderClasses() {
+        return [
+        this.silderShow ? 'sider' : 'display_none'
+        ]
+      },contentClasses() {
+        return [
+        this.silderShow&&!this.isMobile ? 'margin_left' : ''
+        ]
+      }
+    },
+    mounted(){
+      window.onresize = () =>{
+        this.$store.commit('changeView',document.documentElement.clientWidth<768)
+        this.isMobile=this.$store.state.nav.isMobile
+      }
+    },
+    methods:{
+      onSwipeLeft(){
+        this.silderShow=false
+      },
+      onSwipeRight(){
+        this.silderShow=true
+      }
+    },
+    watch: {
     // 对路由变化作出响应...
     '$route' (to, from) {
       var path = '';
@@ -68,9 +84,9 @@ export default {
         }
       })
       this.$store.commit('navBread', path);
-      this.open=this.$store.state.nav.open
-      this.active=this.$store.state.nav.active
-      this.breadActive=this.$store.state.nav.breadActive
+      this.open=this.$store.state.nav.open;
+      this.active=this.$store.state.nav.active;
+      this.breadActive=this.$store.state.nav.breadActive;
     }
   },
   data() {
@@ -82,7 +98,10 @@ export default {
       open: this.$store.state.nav.open,
       accordion: this.$store.state.nav.accordion,
       list: this.$store.state.nav.list,
-      isCollapsed: false,
+      silderStyle:'',
+      ContentStyle:'',
+      silderShow: this.$store.state.nav.silderShow,
+      isMobile: this.$store.state.nav.isMobile,
     }
   }
 }
@@ -97,25 +116,23 @@ export default {
 
 </style>
 <style type="text/css" scoped>
+.display_none{
+  margin-left: -201px
+}
+.margin_left{
+  margin-left:200px;
+}
 .layout {
-  border: 1px solid #d7dde4;
   background: #f5f7f9;
   position: relative;
   border-radius: 4px;
 }
-
 .sider {
   position:fixed;
   height: 100vh;
   left: 0;
   z-index: 9999;
-  overflow: 'auto'
 }
-
-.collapsed-menu {
-  margin-left: 200px;
-}
-
 .trigger {
   position: absolute;
   bottom:0;

@@ -1,6 +1,6 @@
 <template>
   <Row  :gutter="16">
-    <Col span='12'>
+    <Col :sm='12' :xs="24">
     <Card class='color'>
       <h3 slot="title">标签</h3>
       <Tag checkable color="blue">标签一</Tag>
@@ -61,7 +61,7 @@
       <Slider v-model="valueSlider1" :step="5" show-stops />
     </Card>
   </Col>
-  <Col span='12'>
+  <Col :sm='12' :xs="24">
   <Card class='color'>
     <h3 slot="title">评分</h3>
     <Rate allow-half show-text v-model="valueHalf" />
@@ -125,7 +125,6 @@
     </Tooltip>
   </Card>
 </Col>
-
 <BackTop></BackTop>
 </Row>
 </template>

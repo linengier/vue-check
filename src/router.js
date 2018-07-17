@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import NotFound from '@/components/NotFound'
 import Routes from '@/components/Routes'
-
 import HelloWorld from '@/components/HelloWorld'
 import Color from '@/components/Color'
 import Icon from '@/components/Icon'
