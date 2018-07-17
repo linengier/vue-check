@@ -1,4 +1,4 @@
-# vue-tick
+# vue-check
 
 > Vue&iView搭建的一个展示项目
 > 响应式布局,左右拖动可开关侧边栏
