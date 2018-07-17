@@ -38,16 +38,16 @@
         </FormItem>
         <FormItem label="性别" prop="gender">
           <RadioGroup v-model="formValidate.gender">
-            <Radio label="male">Male</Radio>
-            <Radio label="female">Female</Radio>
+            <Radio label="男">男</Radio>
+            <Radio label="女">女</Radio>
           </RadioGroup>
         </FormItem>
         <FormItem label="爱好" prop="interest">
           <CheckboxGroup v-model="formValidate.interest">
-            <Checkbox label="Eat"></Checkbox>
-            <Checkbox label="Sleep"></Checkbox>
-            <Checkbox label="Run"></Checkbox>
-            <Checkbox label="Movie"></Checkbox>
+            <Checkbox label="吃"></Checkbox>
+            <Checkbox label="睡"></Checkbox>
+            <Checkbox label="翻身"></Checkbox>
+            <Checkbox label="打代码"></Checkbox>
           </CheckboxGroup>
         </FormItem>
         <FormItem label="简介" prop="desc">
