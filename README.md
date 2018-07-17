@@ -2,13 +2,13 @@
 
 > Vue&iView搭建的一个展示项目
 > 响应式布局,左右拖动可开关侧边栏
-### [在线演示](https://mtboom.github.io/vue-tick/)
+### [在线演示](https://mtboom.github.io/vue-check/)
 
 ## 快速构建
 前置`nodejs`,`npm`
 ``` bash
 # clone项目
-git clone https://github.com/mtboom/vue-demo.git
+git clone https://github.com/mtboom/vue-check.git
 
 # 安装必要插件
 npm install
