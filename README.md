@@ -1,7 +1,7 @@
 # vue-tick
 
 > Vue&iView搭建的一个展示项目
-
+> 响应式布局,左右拖动可开关侧边栏
 ### [在线演示](https://mtboom.github.io/vue-tick/)
 
 ## 快速构建
