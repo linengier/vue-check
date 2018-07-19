@@ -29,11 +29,11 @@
             </template>
           </Menu>
         </Sider>
-        <Content :style="{padding: '0 16px 16px'}" :class='contentClasses'>
+        <Content :style="{padding: '0 16px 16px',height:'100vh'}" :class='contentClasses'>
           <Breadcrumb :style="{margin: '16px 0'}">
             <BreadcrumbItem>{{breadActive}}</BreadcrumbItem>
           </Breadcrumb>
-          <v-touch tag="div" ref='touchTag' v-on:swipeleft="onSwipeLeft" v-on:swiperight="onSwipeRight" :style="{'touch-action':'pan-y'}">
+          <v-touch tag="div" ref='touchTag' v-on:swipeleft="onSwipeLeft" v-on:swiperight="onSwipeRight" v-on:tap="onTap":style="{'touch-action':'pan-y'}">
             <router-view/>
           </v-touch>
         </Content>
@@ -69,6 +69,11 @@ export default {
     },
     onSwipeRight() {
       this.silderShow = true
+    },
+    onTap() {
+      if(this.silderShow&&this.isMobile){
+        this.silderShow=!this.silderShow
+      }
     }
   },
   watch: {

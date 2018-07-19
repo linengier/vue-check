@@ -87,9 +87,12 @@ export default {
 }
 
 </script>
-<style type="text/css" scoped="">
+<style type="text/css" scoped>
 .card {
   margin: 10px 0;
+}
+button{
+  margin: 5px 0;
 }
 
 </style>
