@@ -29,11 +29,11 @@
             </template>
           </Menu>
         </Sider>
-        <Content :style="{padding: '0 16px 16px',height:'100vh'}" :class='contentClasses'>
-          <Breadcrumb :style="{margin: '16px 0'}">
-            <BreadcrumbItem>{{breadActive}}</BreadcrumbItem>
-          </Breadcrumb>
-          <v-touch tag="div" ref='touchTag' v-on:swipeleft="onSwipeLeft" v-on:swiperight="onSwipeRight" v-on:tap="onTap":style="{'touch-action':'pan-y'}">
+        <Content :style="{padding: '0 16px',height:'100vh'}" :class='contentClasses'>
+          <v-touch tag="div" ref='touchTag' v-on:swipeleft="onSwipeLeft" v-on:swiperight="onSwipeRight" v-on:tap="onTap":style="{'touch-action':'pan-y'}"  style="height:100vh">
+            <Breadcrumb :style="{padding: '16px 0'}">
+              <BreadcrumbItem>{{breadActive}}</BreadcrumbItem>
+            </Breadcrumb>
             <router-view/>
           </v-touch>
         </Content>

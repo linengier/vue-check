@@ -146,7 +146,7 @@
 </script>
 <style type="text/css" scoped>
 .color {
-  margin: 18px 0;
+  margin: 0 0 10px;
 }
 
 .demo-carousel {

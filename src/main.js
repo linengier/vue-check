@@ -5,15 +5,20 @@ import Vuex from 'vuex'
 import App from './App'
 import router from './router'
 import VueTouch  from 'vue-touch'
+import VueQuillEditor from 'vue-quill-editor'
 
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
 import './theme.less';
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
 
 Vue.config.productionTip = false
 Vue.use(iView); // 组件配置使用文档 https://www.iviewui.com/
 Vue.use(Vuex); // 路由配置使用文档  https://vuex.vuejs.org
 Vue.use(VueTouch, {name: 'v-touch'}) //手势配置使用文档https://github.com/vuejs/vue-touch
+Vue.use(VueQuillEditor)
 
 const nav = {
   state: {
@@ -266,11 +271,11 @@ new Vue({
     })
     this.$store.commit('navBread', path);
     if(document.documentElement.clientWidth<768){
-        this.$store.commit('changeView', true)
-        this.$store.commit('changeSilderShow', false)
-      }else{
-        this.$store.commit('changeView', false)
-      }
+      this.$store.commit('changeView', true)
+      this.$store.commit('changeSilderShow', false)
+    }else{
+      this.$store.commit('changeView', false)
+    }
 
   },
   created() {

@@ -9,6 +9,7 @@ import Button from '@/components/Button'
 import Form from '@/components/Form'
 import Message from '@/components/Message'
 import Stuff from '@/components/Stuff'
+import Editor from '@/components/Editor'
 
 Vue.use(Router)
 
@@ -62,6 +63,11 @@ export default new Router({
       component: Stuff,
       icon: 'android-apps'
     }]
+  },{
+    path: '/editor',
+    name: '富文本编辑器',
+    component: Editor,
+    icon: 'compose'
   },{
     path: '/*',
     name: '404',

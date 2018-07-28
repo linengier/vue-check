@@ -137,7 +137,7 @@
 </script>
 <style scoped>
 .card {
-  margin: 5px 0;
+  margin:0 0 10px;
 }
 
 </style>

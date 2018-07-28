@@ -45,7 +45,7 @@
 }
 
 .color {
-  margin: 18px 0;
+  margin: 0 0 10px;
 }
 
 </style>
